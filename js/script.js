@@ -171,7 +171,7 @@ const app = {
                 img.src = src;
                 img.className = 'manga-page-img';
                 img.loading = 'lazy'; 
-                img.alt = `Страница ${index + 1}`;
+                img.alt = '';
                 
                 pagesContainer.appendChild(img);
             });

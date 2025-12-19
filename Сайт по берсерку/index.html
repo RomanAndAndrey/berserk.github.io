@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BERSERK | Dark Fantasy Manga Reader</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <nav class="sidebar">
+        <div class="logo">
+          <h1>BERSERK</h1>
+          <p>The Struggle Continues</p>
+        </div>
+        <ul class="nav-links">
+          <li class="active" data-target="manga">
+            <span class="icon">📖</span>
+            <span class="text">Манга</span>
+          </li>
+          <li data-target="lore">
+            <span class="icon">🐉</span>
+            <span class="text">Лор & Автор</span>
+          </li>
+          <li data-target="assets">
+            <span class="icon">🎨</span>
+            <span class="text">Материалы</span>
+          </li>
+          <li data-target="news">
+            <span class="icon">📜</span>
+            <span class="text">Новости</span>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="content">
+        <!-- SECTION: MANGA GRID -->
+        <section id="manga" class="section active">
+          <header class="section-header">
+            <h2>Библиотека Томов</h2>
+            <p>Выберите том для чтения</p>
+          </header>
+          <div class="manga-grid" id="volumes-grid">
+            <!-- Volumes will be injected here by JS -->
+          </div>
+        </section>
+
+        <!-- SECTION: CHAPTERS LIST (Hidden by default) -->
+        <section id="chapters-list" class="section hidden">
+          <header class="section-header">
+            <button class="back-btn" onclick="app.showSection('manga')">
+              ← Назад к Томам
+            </button>
+            <h2 id="selected-volume-title">Том X</h2>
+          </header>
+          <div class="chapters-grid" id="chapters-container">
+            <!-- Chapters will be injected here -->
+          </div>
+        </section>
+
+        <!-- SECTION: VIEWER (Hidden by default) -->
+        <section id="viewer" class="section hidden">
+          <div class="sticky-header">
+            <div class="viewer-controls">
+              <button class="back-btn" onclick="app.goBackToChapters()">
+                ← Меню
+              </button>
+              <select id="volume-select"></select>
+              <select id="chapter-select"></select>
+            </div>
+          </div>
+          <div class="manga-pages" id="pages-container">
+            <!-- Pages go here -->
+          </div>
+        </section>
+
+        <!-- SECTION: LORE -->
+        <section id="lore" class="section hidden">
+          <header class="section-header">
+            <h2>Кентаро Миура</h2>
+            <p class="subtitle">1966 — 2021</p>
+          </header>
+          <article class="lore-content">
+            <div class="bio-block">
+              <h3>Биография</h3>
+              <p>
+                Кентаро Миура — легендарный японский мангака, наиболее известный
+                своей работой над эпической темной фэнтези-мангой «Берсерк». Его
+                невероятная детализация рисунка и глубокий, мрачный сюжет
+                завоевали сердца миллионов фанатов по всему миру.
+              </p>
+            </div>
+            <div class="influence-block">
+              <h3>Влияние на культуру (FromSoftware)</h3>
+              <p>
+                Творчество Миуры оказало колоссальное влияние на игровую
+                индустрию, особенно на игры <strong>Хидетаки Миядзаки</strong>.
+              </p>
+              <ul>
+                <li>
+                  <strong>Dark Souls</strong>: Дизайн рыцарей, атмосфера
+                  безысходности и мрачные замки.
+                </li>
+                <li>
+                  <strong>Elden Ring</strong>: Множество отсылок к «Берсерку»,
+                  включая меч, напоминающий Dragon Slayer, и дизайн некоторых
+                  боссов (например, Маления и Властелин).
+                </li>
+                <li>
+                  <strong>Bloodborne</strong>: Эстетика кошмара и охотника.
+                </li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <!-- SECTION: ASSETS -->
+        <section id="assets" class="section hidden">
+          <header class="section-header">
+            <h2>Материалы</h2>
+          </header>
+          <div class="assets-content">
+            <div class="gallery-preview">
+              <p>Галерея артов (Coming Soon)</p>
+            </div>
+            <a
+              href="https://myanimelist.net/anime/33/Kenpuu_Denki_Berserk"
+              target="_blank"
+              class="cta-button primary"
+            >
+              Смотреть Аниме (External)
+            </a>
+          </div>
+        </section>
+
+        <!-- SECTION: NEWS -->
+        <section id="news" class="section hidden">
+          <header class="section-header">
+            <h2>Новости проекта</h2>
+          </header>
+          <ul class="news-list">
+            <li class="news-item">
+              <span class="date">19.12.2025</span>
+              <span class="text">Запуск платформы. Добавлен Том 1.</span>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <!-- Application Logic -->
+    <script src="js/manga-data.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

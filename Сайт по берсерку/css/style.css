@@ -1,0 +1,346 @@
+/* 
+  Theme: Dark Fantasy (Berserk)
+  Colors: Black, Dark Gray, Blood Red, White/Silver
+*/
+
+:root {
+  --bg-color: #000000;
+  --panel-color: #111111;
+  --panel-hover: #1a1a1a;
+  --accent-color: #8a0707;
+  --accent-glow: rgba(138, 7, 7, 0.4);
+  --text-main: #e0e0e0;
+  --text-muted: #888888;
+  --font-heading: "Cinzel", serif;
+  --font-body: "Roboto", sans-serif;
+  --sidebar-width: 250px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  height: 100vh;
+  overflow: hidden; /* App-like feel */
+}
+
+/* APP CONTAINER */
+.app-container {
+  display: flex;
+  height: 100%;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--panel-color);
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  z-index: 100;
+}
+
+.logo {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.logo h1 {
+  font-family: var(--font-heading);
+  color: var(--accent-color);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.logo p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.nav-links li .icon {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.nav-links li:hover {
+  background-color: var(--panel-hover);
+  color: #fff;
+  padding-left: 1.2rem; /* Sliding effect */
+}
+
+.nav-links li.active {
+  background-color: var(--accent-color);
+  color: #fff;
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* CONTENT AREA */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  background: radial-gradient(circle at top right, #111 0%, #000 70%);
+}
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease;
+}
+
+.section.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: #fff;
+}
+
+.section-header p {
+  color: var(--text-muted);
+}
+
+/* BUTTONS */
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+.back-btn:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: var(--accent-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid transparent;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--accent-glow);
+}
+
+/* MANGA GRID */
+.manga-grid,
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2rem;
+}
+
+/* Volume Card */
+.volume-card {
+  background-color: var(--panel-color);
+  border: 1px solid #333;
+  padding: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s, border-color 0.3s;
+  text-align: center;
+}
+
+.volume-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
+}
+
+.volume-cover {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background-color: #222;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-family: var(--font-heading);
+}
+
+.volume-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.chapter-item {
+  background-color: var(--panel-color);
+  padding: 1rem;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chapter-item:hover {
+  background-color: #222;
+  border-color: var(--accent-color);
+  padding-left: 1.2rem;
+}
+
+/* VIEWER */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 1rem;
+  border-bottom: 1px solid #333;
+  z-index: 50;
+  backdrop-filter: blur(5px);
+  margin: -2rem -2rem 1rem -2rem; /* Stretch to edges */
+  padding-left: 2rem;
+}
+
+.viewer-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.viewer-controls select {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.manga-pages {
+  display: flex;
+  flex-direction: column; /* Webtoon style */
+  align-items: center;
+  gap: 0;
+  min-height: 80vh;
+}
+
+.manga-page-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* LORE & NEWS */
+.lore-content {
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+.lore-content h3 {
+  color: var(--accent-color);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.news-item {
+  background: var(--panel-color);
+  padding: 1.5rem;
+  border-left: 3px solid var(--accent-color);
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-item .date {
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #111;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+  }
+  .logo {
+    margin-bottom: 1rem;
+  }
+  .nav-links {
+    display: flex;
+    overflow-x: auto;
+  }
+  .nav-links li {
+    margin-right: 1rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Berserk Manga Reader</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">
+          <h1>BERSERK</h1>
+          <p>Fan Manga Reader</p>
+        </div>
+
+        <ul class="nav-links">
+          <li class="active" data-target="manga">
+            <span class="icon">📖</span> Manga
+          </li>
+          <li data-target="lore"><span class="icon">📜</span> Lore</li>
+          <li data-target="assets"><span class="icon">🗡️</span> Assets</li>
+          <li data-target="news"><span class="icon">📰</span> News</li>
+        </ul>
+      </aside>
+
+      <!-- CONTENT AREA -->
+      <main class="content">
+        <!-- SECTION: MANGA LIBRARY -->
+        <div id="manga" class="section">
+          <div class="section-header">
+            <h2>Library</h2>
+            <p>Select a volume to begin reading</p>
+          </div>
+          <div id="volumes-grid" class="manga-grid">
+            <!-- Volumes injected by JS -->
+          </div>
+        </div>
+
+        <!-- SECTION: CHAPTERS LIST -->
+        <div id="chapters-list" class="section hidden">
+          <button class="back-btn" onclick="app.showSection('manga')">
+            ← Back to Volumes
+          </button>
+          <div class="section-header">
+            <h2 id="selected-volume-title">Volume Title</h2>
+            <p>Select a chapter</p>
+          </div>
+          <div id="chapters-container" class="chapters-grid">
+            <!-- Chapters injected by JS -->
+          </div>
+        </div>
+
+        <!-- SECTION: VIEWER -->
+        <div id="viewer" class="section hidden">
+          <div class="sticky-header">
+            <div class="viewer-controls">
+              <button class="back-btn" onclick="app.goBackToChapters()">
+                ← Chapters
+              </button>
+              <select id="volume-select" aria-label="Select Volume"></select>
+              <select id="chapter-select" aria-label="Select Chapter"></select>
+            </div>
+          </div>
+
+          <div id="pages-container" class="manga-pages">
+            <!-- Pages injected by JS -->
+          </div>
+        </div>
+
+        <!-- SECTION: LORE -->
+        <div id="lore" class="section hidden">
+          <div class="section-header">
+            <h2>World of Berserk</h2>
+            <p>History, Characters, and Setting</p>
+          </div>
+          <div class="lore-content">
+            <h3>The Black Swordsman</h3>
+            <p>
+              Guts, known as the Black Swordsman, seeks sanctuary from the
+              demonic forces that pursue him and his woman, and vengeance
+              against the man who branded him as an unholy sacrifice.
+            </p>
+
+            <h3>The Band of the Hawk</h3>
+            <p>
+              A mercenary group led by Griffith, who recruited Guts. They played
+              a pivotal role in the Hundred Year War.
+            </p>
+          </div>
+        </div>
+
+        <!-- SECTION: ASSETS -->
+        <div id="assets" class="section hidden">
+          <div class="section-header">
+            <h2>Assets & Downloads</h2>
+            <p>Wallpapers, Icons, and Resources</p>
+          </div>
+          <p>Coming soon...</p>
+        </div>
+
+        <!-- SECTION: NEWS -->
+        <div id="news" class="section hidden">
+          <div class="section-header">
+            <h2>Latest News</h2>
+            <p>Updates about the project</p>
+          </div>
+          <div class="news-item">
+            <div class="date">2025-12-19</div>
+            <div class="title">Project Initialized</div>
+            <div class="body">
+              The Berserk Manga Reader structure has been created.
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- Data -->
+    <script src="js/manga-data.js"></script>
+    <!-- Logic -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

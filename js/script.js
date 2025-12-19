@@ -4,7 +4,7 @@
 
 // --- CONFIGURATION & DATABASE ---
 // Use generated data if available, otherwise fallback/empty
-const mangaDatabase = typeof generatedMangaData !== 'undefined' ? generatedMangaData : { volumes: {} };
+const mangaDatabase = typeof generatedMangaData !== 'undefined' ? { volumes: generatedMangaData } : { volumes: {} };
 
 // --- APP STATE ---
 const state = {
@@ -22,7 +22,7 @@ const app = {
         if(firstVol) state.currentVolume = parseInt(firstVol);
         
         app.renderVolumes();
-        console.log("Berserk SPA Initialized");
+        console.log("Берсерк SPA Инициализирован");
     },
 
     // NAVIGATION
@@ -85,7 +85,7 @@ const app = {
         grid.innerHTML = '';
 
         if (Object.keys(mangaDatabase.volumes).length === 0) {
-            grid.innerHTML = '<p>No manga data found. Please run generate_config.ps1.</p>';
+            grid.innerHTML = '<p>Данные манги не найдены. Пожалуйста, запустите generate_config.ps1.</p>';
             return;
         }
 
@@ -147,7 +147,7 @@ const app = {
         
         const chData = volData.chapters[chNum];
         if (!chData) {
-            console.error("Chapter not found");
+            console.error("Глава не найдена");
             return;
         }
 
@@ -160,7 +160,7 @@ const app = {
                 img.src = src;
                 img.className = 'manga-page-img';
                 img.loading = 'lazy'; 
-                img.alt = `Page ${index + 1}`;
+                img.alt = `Страница ${index + 1}`;
                 
                 pagesContainer.appendChild(img);
             });

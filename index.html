@@ -25,11 +25,11 @@
 
         <ul class="nav-links">
           <li class="active" data-target="manga">
-            <span class="icon">📖</span> Manga
+            <span class="icon">📖</span> Манга
           </li>
-          <li data-target="lore"><span class="icon">📜</span> Lore</li>
-          <li data-target="assets"><span class="icon">🗡️</span> Assets</li>
-          <li data-target="news"><span class="icon">📰</span> News</li>
+          <li data-target="lore"><span class="icon">📜</span> Лор</li>
+          <li data-target="assets"><span class="icon">🗡️</span> Материалы</li>
+          <li data-target="news"><span class="icon">📰</span> Новости</li>
         </ul>
       </aside>
 
@@ -38,8 +38,8 @@
         <!-- SECTION: MANGA LIBRARY -->
         <div id="manga" class="section">
           <div class="section-header">
-            <h2>Library</h2>
-            <p>Select a volume to begin reading</p>
+            <h2>Библиотека</h2>
+            <p>Выберите том для чтения</p>
           </div>
           <div id="volumes-grid" class="manga-grid">
             <!-- Volumes injected by JS -->
@@ -49,11 +49,11 @@
         <!-- SECTION: CHAPTERS LIST -->
         <div id="chapters-list" class="section hidden">
           <button class="back-btn" onclick="app.showSection('manga')">
-            ← Back to Volumes
+            ← Назад к томам
           </button>
           <div class="section-header">
             <h2 id="selected-volume-title">Volume Title</h2>
-            <p>Select a chapter</p>
+            <p>Выберите главу</p>
           </div>
           <div id="chapters-container" class="chapters-grid">
             <!-- Chapters injected by JS -->
@@ -65,7 +65,7 @@
           <div class="sticky-header">
             <div class="viewer-controls">
               <button class="back-btn" onclick="app.goBackToChapters()">
-                ← Chapters
+                ← Главы
               </button>
               <select id="volume-select" aria-label="Select Volume"></select>
               <select id="chapter-select" aria-label="Select Chapter"></select>
@@ -80,21 +80,18 @@
         <!-- SECTION: LORE -->
         <div id="lore" class="section hidden">
           <div class="section-header">
-            <h2>World of Berserk</h2>
-            <p>History, Characters, and Setting</p>
+            <h2>Мир Берсерка</h2>
+            <p>История, Персонажи и Сеттинг</p>
           </div>
           <div class="lore-content">
-            <h3>The Black Swordsman</h3>
+            <h3>Черный Мечник</h3>
             <p>
-              Guts, known as the Black Swordsman, seeks sanctuary from the
-              demonic forces that pursue him and his woman, and vengeance
-              against the man who branded him as an unholy sacrifice.
+              Гатс, известный как Черный Мечник, ищет убежища от демонических сил, преследующих его и его женщину, а также мести мужчине, заклеймившему его как нечестивую жертву.
             </p>
 
-            <h3>The Band of the Hawk</h3>
+            <h3>Банда Ястреба</h3>
             <p>
-              A mercenary group led by Griffith, who recruited Guts. They played
-              a pivotal role in the Hundred Year War.
+              Отряд наемников под предводительством Гриффита, завербовавшего Гатса. Они сыграли ключевую роль в Столетней войне.
             </p>
           </div>
         </div>
@@ -102,23 +99,23 @@
         <!-- SECTION: ASSETS -->
         <div id="assets" class="section hidden">
           <div class="section-header">
-            <h2>Assets & Downloads</h2>
-            <p>Wallpapers, Icons, and Resources</p>
+            <h2>Материалы и Загрузки</h2>
+            <p>Обои, Иконки и Ресурсы</p>
           </div>
-          <p>Coming soon...</p>
+          <p>Скоро...</p>
         </div>
 
         <!-- SECTION: NEWS -->
         <div id="news" class="section hidden">
           <div class="section-header">
-            <h2>Latest News</h2>
-            <p>Updates about the project</p>
+            <h2>Последние Новости</h2>
+            <p>Обновления проекта</p>
           </div>
           <div class="news-item">
             <div class="date">2025-12-19</div>
-            <div class="title">Project Initialized</div>
+            <div class="title">Проект Инициализирован</div>
             <div class="body">
-              The Berserk Manga Reader structure has been created.
+              Структура читалки Берсерк была создана.
             </div>
           </div>
         </div>

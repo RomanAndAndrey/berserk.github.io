@@ -1,6 +1,6 @@
 ﻿const generatedMangaData = {
     "2":  {
-              "title":  "Volume 2",
+              "title":  "Том 2",
               "chapters":  {
                                "2":  {
                                          "pages":  [
@@ -117,7 +117,7 @@
                                                        "image239.jpg",
                                                        "image240.jpg"
                                                    ],
-                                         "title":  "Chapter 2"
+                                         "title":  "Глава 2"
                                      },
                                "1":  {
                                          "pages":  [
@@ -247,13 +247,13 @@
                                                        "image121.jpg",
                                                        "image122.jpg"
                                                    ],
-                                         "title":  "Chapter 1"
+                                         "title":  "Глава 1"
                                      }
                            },
               "cover":  "assets/manga/vol2/cover.jpg"
           },
     "1":  {
-              "title":  "Volume 1",
+              "title":  "Том 1",
               "chapters":  {
                                "2":  {
                                          "pages":  [
@@ -327,7 +327,7 @@
                                                        "image165.jpg",
                                                        "image166.jpg"
                                                    ],
-                                         "title":  "Chapter 2"
+                                         "title":  "Глава 2"
                                      },
                                "1":  {
                                          "pages":  [
@@ -428,7 +428,7 @@
                                                        "image093.jpg",
                                                        "image094.jpg"
                                                    ],
-                                         "title":  "Chapter 1"
+                                         "title":  "Глава 1"
                                      },
                                "3":  {
                                          "pages":  [
@@ -493,7 +493,7 @@
                                                        "image228.jpg",
                                                        "image229.jpg"
                                                    ],
-                                         "title":  "Chapter 3"
+                                         "title":  "Глава 3"
                                      }
                            },
               "cover":  "assets/manga/vol1/cover.jpg"

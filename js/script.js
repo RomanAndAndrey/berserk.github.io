@@ -2,22 +2,22 @@
  * BERSERK SPA LOGIC
  */
 
-// --- CONFIGURATION & DATABASE ---
-// Use generated data if available, otherwise fallback/empty
+// --- КОНФИГУРАЦИЯ И БАЗА ДАННЫХ ---
+// Использовать сгенерированные данные, если есть, иначе запасной вариант/пусто
 const mangaDatabase = typeof generatedMangaData !== 'undefined' ? { volumes: generatedMangaData } : { volumes: {} };
 
-// --- APP STATE ---
+// --- СОСТОЯНИЕ ПРИЛОЖЕНИЯ ---
 const state = {
     currentVolume: 1,
     currentChapter: 1,
-    currentSection: 'manga' // 'manga', 'chapters-list', 'viewer', 'lore', 'assets', 'news'
+    currentSection: 'manga' // 'manga', 'chapters-list', 'viewer', 'author' (об авторе), 'assets', 'news'
 };
 
-// --- CORE APP ---
+// --- ОСНОВНОЕ ПРИЛОЖЕНИЕ ---
 const app = {
     init: () => {
         app.setupNavigation();
-        // Default to Volume 1 if available
+        // По умолчанию Том 1, если доступен
         const firstVol = Object.keys(mangaDatabase.volumes)[0];
         if(firstVol) state.currentVolume = parseInt(firstVol);
         
@@ -25,27 +25,27 @@ const app = {
         console.log("Берсерк SPA Инициализирован");
     },
 
-    // NAVIGATION
+    // НАВИГАЦИЯ
     setupNavigation: () => {
         const navLinks = document.querySelectorAll('.nav-links li');
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                // Remove active class from all
+                // Удалить класс active у всех
                 navLinks.forEach(l => l.classList.remove('active'));
-                // Add active to clicked
+                // Добавить active нажатому элементу
                 const targetLi = e.currentTarget;
                 targetLi.classList.add('active');
                 
-                // Show section
+                // Показать секцию
                 const targetId = targetLi.dataset.target;
                 app.showSection(targetId);
             });
         });
         
-        // Viewer Select Listeners
+        // Слушатели выбора в просмотрщике
         document.getElementById('volume-select').addEventListener('change', (e) => {
             const vol = parseInt(e.target.value);
-            // Reset to chapter 1 of new volume
+            // Сброс на главу 1 нового тома
             app.loadChapter(vol, 1);
         });
 
@@ -53,17 +53,26 @@ const app = {
             const ch = parseInt(e.target.value);
             app.loadChapter(state.currentVolume, ch);
         });
+
+        // Переключение хедера
+        const headerToggleBtn = document.getElementById('header-toggle');
+        if (headerToggleBtn) {
+            headerToggleBtn.addEventListener('click', () => {
+                const header = document.querySelector('.sticky-header');
+                header.classList.toggle('header-collapsed');
+            });
+        }
     },
 
     showSection: (sectionId) => {
-        // hide all sections
+        // скрыть все секции
         document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
         document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
 
-        // show target
+        // показать целевую секцию
         let target = document.getElementById(sectionId);
         
-        // Handling internal manga navigation layers
+        // Обработка внутренней навигации манги
         if (sectionId === 'manga') {
             document.getElementById('manga').classList.remove('hidden');
         } else if (sectionId === 'chapters-list') {
@@ -71,7 +80,7 @@ const app = {
         } else if (sectionId === 'viewer') {
             document.getElementById('viewer').classList.remove('hidden');
         } else {
-            // General navs (Lore, Assets, News)
+            // Общая навигация (Об авторе, Материалы, Новости)
             if(target) target.classList.remove('hidden');
         }
         
@@ -79,7 +88,7 @@ const app = {
         window.scrollTo(0,0);
     },
 
-    // MANGA LIBRARY LOGIC
+    // ЛОГИКА БИБЛИОТЕКИ МАНГИ
     renderVolumes: () => {
         const grid = document.getElementById('volumes-grid');
         grid.innerHTML = '';
@@ -95,7 +104,7 @@ const app = {
             card.className = 'volume-card';
             card.onclick = () => app.openVolume(volNum);
             
-            // Allow placeholder if cover doesn't exist (handled by css background)
+            // Разрешить заглушку, если обложки нет (обрабатывается через css background)
             const coverImg = volData.cover ? `<img src="${volData.cover}" alt="Vol ${volNum}" class="volume-cover">` : `<div class="volume-cover">Vol ${volNum}</div>`;
 
             card.innerHTML = `
@@ -128,7 +137,7 @@ const app = {
         app.showSection('chapters-list');
     },
 
-    // VIEWER LOGIC
+    // ЛОГИКА ПРОСМОТРЩИКА
     loadChapter: (volNum, chNum) => {
         volNum = parseInt(volNum);
         chNum = parseInt(chNum);
@@ -136,11 +145,11 @@ const app = {
         state.currentVolume = volNum;
         state.currentChapter = chNum;
 
-        // Populate selects if needed (or update values)
+        // Заполнить селекты при необходимости (или обновить значения)
         app.updateViewerControls(volNum, chNum);
 
         const pagesContainer = document.getElementById('pages-container');
-        pagesContainer.innerHTML = ''; // Clear previous
+        pagesContainer.innerHTML = ''; // Очистить предыдущее
 
         const volData = mangaDatabase.volumes[volNum];
         if (!volData) return;
@@ -151,7 +160,7 @@ const app = {
             return;
         }
 
-        // Use explicit page list from generator
+        // Использовать явный список страниц из генератора
         if (chData.pages && Array.isArray(chData.pages)) {
             chData.pages.forEach((pageName, index) => {
                 const img = document.createElement('img');
@@ -173,7 +182,7 @@ const app = {
         const volSelect = document.getElementById('volume-select');
         const chSelect = document.getElementById('chapter-select');
 
-        // Update Volume Options
+        // Обновить опции томов
         volSelect.innerHTML = '';
         Object.keys(mangaDatabase.volumes).forEach(v => {
             const opt = document.createElement('option');
@@ -183,7 +192,7 @@ const app = {
             volSelect.appendChild(opt);
         });
 
-        // Update Chapter Options for CURRENT Volume
+        // Обновить опции глав для ТЕКУЩЕГО тома
         chSelect.innerHTML = '';
         const volData = mangaDatabase.volumes[currentVol];
         Object.keys(volData.chapters).forEach(c => {
@@ -200,5 +209,5 @@ const app = {
     }
 };
 
-// Start App
+// Запуск приложения
 document.addEventListener('DOMContentLoaded', app.init);

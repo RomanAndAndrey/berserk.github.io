@@ -59,7 +59,9 @@ const app = {
         if (headerToggleBtn) {
             headerToggleBtn.addEventListener('click', () => {
                 const header = document.querySelector('.sticky-header');
-                header.classList.toggle('header-collapsed');
+                const isCollapsed = header.classList.toggle('header-collapsed');
+                // Change icon: Open = Eye, Collapsed = Cross
+                headerToggleBtn.innerText = isCollapsed ? '✖️' : '👁️';
             });
         }
     },

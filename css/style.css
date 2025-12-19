@@ -247,7 +247,7 @@ body {
   z-index: 50;
   backdrop-filter: blur(5px);
   margin: -2rem -2rem 1rem -2rem; /* Растянуть до краев */
-  padding-left: 2rem;
+  padding-left: 5rem; /* Space for absolute button */
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -256,6 +256,15 @@ body {
   backdrop-filter: none;
   border-bottom: none;
   pointer-events: none; /* Пропускать клики */
+}
+
+/* Position the toggle button absolutely in the top-left */
+#header-toggle {
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
 }
 
 /* Убедиться, что элементы управления кликабельны, даже когда хедер технически "свернут", но кнопка видна. 

@@ -101,10 +101,11 @@ body {
 }
 
 /* ОБЛАСТЬ КОНТЕНТА */
+/* ОБЛАСТЬ КОНТЕНТА */
 .content {
   flex: 1;
   overflow-y: auto;
-  padding: 2rem;
+  padding: 0; /* Remove global padding to allow full-bleed sections */
   position: relative;
   background: radial-gradient(circle at top right, #111 0%, #000 70%);
 }
@@ -112,7 +113,13 @@ body {
 .section {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 2rem; /* Add padding here instead */
   animation: fadeIn 0.5s ease;
+}
+
+#viewer {
+    padding: 0;
+    max-width: 100%;
 }
 
 .section.hidden {
@@ -246,7 +253,7 @@ body {
   border-bottom: 1px solid #333;
   z-index: 50;
   backdrop-filter: blur(5px);
-  margin: -2rem -2rem 1rem -2rem; /* Растянуть до краев */
+  margin: 0 0 1rem 0; /* Reset margins */
   padding-left: 5rem; /* Space for absolute button */
   transition: transform 0.3s ease, background-color 0.3s ease;
 }

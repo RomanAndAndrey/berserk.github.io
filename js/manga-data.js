@@ -1,6 +1,6 @@
 ﻿const generatedMangaData = {
     "2":  {
-              "title":  "Том 2",
+              "title":  "Volume 2",
               "chapters":  {
                                "2":  {
                                          "pages":  [
@@ -117,11 +117,10 @@
                                                        "image239.jpg",
                                                        "image240.jpg"
                                                    ],
-                                         "title":  "Глава 2"
+                                         "title":  "Chapter 2"
                                      },
                                "1":  {
                                          "pages":  [
-                                                       "image000.jpg",
                                                        "image0000.png",
                                                        "image000x1.jpg",
                                                        "image000x2.png",
@@ -247,13 +246,13 @@
                                                        "image121.jpg",
                                                        "image122.jpg"
                                                    ],
-                                         "title":  "Глава 1"
+                                         "title":  "Chapter 1"
                                      }
                            },
               "cover":  "assets/manga/vol2/cover.jpg"
           },
     "1":  {
-              "title":  "Том 1",
+              "title":  "Volume 1",
               "chapters":  {
                                "2":  {
                                          "pages":  [
@@ -327,11 +326,10 @@
                                                        "image165.jpg",
                                                        "image166.jpg"
                                                    ],
-                                         "title":  "Глава 2"
+                                         "title":  "Chapter 2"
                                      },
                                "1":  {
                                          "pages":  [
-                                                       "image000.jpg",
                                                        "image000.png",
                                                        "image0000.png",
                                                        "image000x1.jpg",
@@ -428,7 +426,7 @@
                                                        "image093.jpg",
                                                        "image094.jpg"
                                                    ],
-                                         "title":  "Глава 1"
+                                         "title":  "Chapter 1"
                                      },
                                "3":  {
                                          "pages":  [
@@ -493,9 +491,18 @@
                                                        "image228.jpg",
                                                        "image229.jpg"
                                                    ],
-                                         "title":  "Глава 3"
+                                         "title":  "Chapter 3"
                                      }
                            },
               "cover":  "assets/manga/vol1/cover.jpg"
           }
 };
+const generatedMaterialsData = [
+    "assets/materials/1.webp",
+    "assets/materials/2.jpg",
+    "assets/materials/3.jpg",
+    "assets/materials/4.webp",
+    "assets/materials/5.jpg",
+    "assets/materials/6.jpg",
+    "assets/materials/7.jpg"
+];

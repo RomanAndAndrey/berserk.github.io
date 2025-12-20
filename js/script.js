@@ -5,6 +5,7 @@
 // --- КОНФИГУРАЦИЯ И БАЗА ДАННЫХ ---
 // Использовать сгенерированные данные, если есть, иначе запасной вариант/пусто
 const mangaDatabase = typeof generatedMangaData !== 'undefined' ? { volumes: generatedMangaData } : { volumes: {} };
+const materialsData = typeof generatedMaterialsData !== 'undefined' ? generatedMaterialsData : [];
 
 // --- СОСТОЯНИЕ ПРИЛОЖЕНИЯ ---
 const state = {
@@ -22,6 +23,7 @@ const app = {
         if(firstVol) state.currentVolume = parseInt(firstVol);
         
         app.renderVolumes();
+        app.setupGallery(); // Init gallery
         console.log("Берсерк SPA Инициализирован");
     },
 
@@ -208,6 +210,55 @@ const app = {
 
     goBackToChapters: () => {
         app.openVolume(state.currentVolume);
+    },
+
+    // ГАЛЕРЕЯ / МОДАЛКА
+    setupGallery: () => {
+        const grid = document.getElementById('materials-gallery');
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.querySelector('.close-modal');
+
+        // Populate Gallery from Data
+        if (grid) {
+            grid.innerHTML = '';
+            if (materialsData.length > 0) {
+                materialsData.forEach(src => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.loading = 'lazy';
+                    img.alt = 'Berserk Art'; // Generic alt since filenames might be ugly
+
+                    item.appendChild(img);
+                    grid.appendChild(item);
+
+                    // Add click listener immediately
+                    item.addEventListener('click', () => {
+                        modal.classList.add('active');
+                        modalImg.src = src;
+                    });
+                });
+            } else {
+                 grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">Нет материалов (добавьте изображения в assets/materials и запустите генератор)</p>';
+            }
+        }
+
+        // Закрытие
+        if(closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+        }
+
+        // Закрытие по клику вне
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
     }
 };
 

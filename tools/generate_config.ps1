@@ -49,11 +49,25 @@ foreach ($volDir in $volDirs) {
     }
 }
 
+# --- Materials Generation ---
+$materialsPath = Join-Path $PSScriptRoot "..\assets\materials"
+$materialsList = @()
+
+if (Test-Path $materialsPath) {
+    $matImages = Get-ChildItem -Path $materialsPath -File | Where-Object { $_.Extension -match "\.(jpg|jpeg|png|webp|gif)$" } | Sort-Object Name
+    foreach ($img in $matImages) {
+        $materialsList += "assets/materials/$($img.Name)"
+    }
+} else {
+    Write-Host "Materials folder not found at $materialsPath, skipping materials generation."
+}
+
 # Convert to JSON
-$json = $volumes | ConvertTo-Json -Depth 5
+$jsonVolumes = $volumes | ConvertTo-Json -Depth 5
+$jsonMaterials = $materialsList | ConvertTo-Json -Depth 2
 
 # Wrap in JS variable
-$content = "const generatedMangaData = " + $json + ";"
+$content = "const generatedMangaData = $jsonVolumes;`nconst generatedMaterialsData = $jsonMaterials;"
 
 # Write to file
 Set-Content -Path $outputPath -Value $content -Encoding UTF8

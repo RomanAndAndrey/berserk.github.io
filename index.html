@@ -30,7 +30,7 @@
             <span class="icon">📖</span> Манга
           </li>
           <li data-target="author"><span class="icon">✍️</span> Об авторе</li>
-          <li data-target="assets"><span class="icon">🗡️</span> Материалы</li>
+          <li data-target="assets"><span class="icon">🗡️</span> Доп. материалы</li>
           <li data-target="news"><span class="icon">📰</span> Новости</li>
         </ul>
       </aside>
@@ -139,10 +139,12 @@
         <!-- СЕКЦИЯ: МАТЕРИАЛЫ -->
         <div id="assets" class="section hidden">
           <div class="section-header">
-            <h2>Материалы и Загрузки</h2>
+            <h2>Интересные фото</h2>
             <p>Обои, Иконки и Ресурсы</p>
           </div>
-          <p>Скоро...</p>
+          <div class="gallery-grid" id="materials-gallery">
+            <!-- Items injected by JS -->
+          </div>
         </div>
 
         <!-- СЕКЦИЯ: НОВОСТИ -->
@@ -158,6 +160,13 @@
           </div>
         </div>
       </main>
+
+      <!-- MODAL FOR GALLERY -->
+      <div id="image-modal" class="modal hidden">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="caption"></div>
+      </div>
     </div>
 
     <!-- СКРИПТЫ -->

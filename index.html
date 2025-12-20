@@ -4,21 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Berserk Manga Reader</title>
-    <!-- Fonts -->
+    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Styles -->
+    <!-- Стили -->
     <link rel="stylesheet" href="css/style.css" />
-    <!-- Favicon -->
+    <!-- Фавиконка -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   </head>
   <body>
     <div class="app-container">
-      <!-- SIDEBAR -->
+      <!-- БОКОВАЯ ПАНЕЛЬ -->
       <aside class="sidebar">
         <div class="logo">
           <h1>BERSERK</h1>
@@ -35,20 +35,20 @@
         </ul>
       </aside>
 
-      <!-- CONTENT AREA -->
+      <!-- ОБЛАСТЬ КОНТЕНТА -->
       <main class="content">
-        <!-- SECTION: MANGA LIBRARY -->
+        <!-- СЕКЦИЯ: БИБЛИОТЕКА МАНГИ -->
         <div id="manga" class="section">
           <div class="section-header">
             <h2>Библиотека</h2>
             <p>Выберите том для чтения</p>
           </div>
           <div id="volumes-grid" class="manga-grid">
-            <!-- Volumes injected by JS -->
+            <!-- Тома вставляются через JS -->
           </div>
         </div>
 
-        <!-- SECTION: CHAPTERS LIST -->
+        <!-- СЕКЦИЯ: СПИСОК ГЛАВ -->
         <div id="chapters-list" class="section hidden">
           <button class="back-btn" onclick="app.showSection('manga')">
             ← Назад к томам
@@ -58,11 +58,11 @@
             <p>Выберите главу</p>
           </div>
           <div id="chapters-container" class="chapters-grid">
-            <!-- Chapters injected by JS -->
+            <!-- Главы вставляются через JS -->
           </div>
         </div>
 
-        <!-- SECTION: VIEWER -->
+        <!-- СЕКЦИЯ: ПРОСМОТРЩИК -->
         <div id="viewer" class="section hidden">
           <div class="sticky-header">
             <div class="viewer-controls">
@@ -82,11 +82,11 @@
           </div>
 
           <div id="pages-container" class="manga-pages">
-            <!-- Pages injected by JS -->
+            <!-- Страницы вставляются через JS -->
           </div>
         </div>
 
-        <!-- SECTION: AUTHOR -->
+        <!-- СЕКЦИЯ: АВТОР -->
         <div id="author" class="section hidden">
           <div class="section-header">
             <h2>Об Авторе</h2>
@@ -136,7 +136,7 @@
           </div>
         </div>
 
-        <!-- SECTION: ASSETS -->
+        <!-- СЕКЦИЯ: МАТЕРИАЛЫ -->
         <div id="assets" class="section hidden">
           <div class="section-header">
             <h2>Материалы и Загрузки</h2>
@@ -145,7 +145,7 @@
           <p>Скоро...</p>
         </div>
 
-        <!-- SECTION: NEWS -->
+        <!-- СЕКЦИЯ: НОВОСТИ -->
         <div id="news" class="section hidden">
           <div class="section-header">
             <h2>Последние Новости</h2>
@@ -160,10 +160,10 @@
       </main>
     </div>
 
-    <!-- SCRIPTS -->
-    <!-- Data -->
+    <!-- СКРИПТЫ -->
+    <!-- Данные -->
     <script src="js/manga-data.js"></script>
-    <!-- Logic -->
+    <!-- Логика -->
     <script src="js/script.js"></script>
   </body>
 </html>

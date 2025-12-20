@@ -1,5 +1,5 @@
 /**
- * BERSERK SPA LOGIC
+ * ЛОГИКА SPA БЕРСЕРК
  */
 
 // --- КОНФИГУРАЦИЯ И БАЗА ДАННЫХ ---
@@ -60,7 +60,7 @@ const app = {
             headerToggleBtn.addEventListener('click', () => {
                 const header = document.querySelector('.sticky-header');
                 const isCollapsed = header.classList.toggle('header-collapsed');
-                // Change icon: Open = Eye, Collapsed = Cross
+                // Изменить иконку: Открыто = Глаз, Свернуто = Крестик
                 headerToggleBtn.innerText = isCollapsed ? '✖️' : '👁️';
             });
         }

@@ -1,7 +1,3 @@
-/**
- * ЛОГИКА SPA БЕРСЕРК
- */
-
 // --- КОНФИГУРАЦИЯ И БАЗА ДАННЫХ ---
 // Использовать сгенерированные данные, если есть, иначе запасной вариант/пусто
 const mangaDatabase = typeof generatedMangaData !== 'undefined' ? { volumes: generatedMangaData } : { volumes: {} };

@@ -18,7 +18,16 @@
   </head>
   <body>
     <div class="app-container">
-      <!-- БОКОВАЯ ПАНЕЛЬ -->
+    <div class="app-container">
+      <!-- 
+        БОКОВАЯ ПАНЕЛЬ (SIDEBAR)
+        Отвечает за навигацию по основным разделам приложения:
+        - Манга (библиотека)
+        - Об авторе
+        - Доп. материалы
+        - Новости
+        Содержит логотип и список навигационных ссылок.
+      -->
       <aside class="sidebar">
         <div class="logo">
           <h1>BERSERK</h1>
@@ -35,9 +44,18 @@
         </ul>
       </aside>
 
-      <!-- ОБЛАСТЬ КОНТЕНТА -->
+      <!-- 
+        ОБЛАСТЬ КОНТЕНТА (CONTENT AREA)
+        Центральная часть приложения, где отображается динамический контент.
+        Содержимое меняется в зависимости от выбранного пункта меню (SPA-архитектура).
+      -->
       <main class="content">
-        <!-- СЕКЦИЯ: БИБЛИОТЕКА МАНГИ -->
+        <!-- 
+          СЕКЦИЯ: БИБЛИОТЕКА МАНГИ (MANGA LIBRARY)
+          Модуль отображения списка всех доступных томов.
+          Генерируется динамически на основе данных из manga-data.js.
+          ID: #manga
+        -->
         <div id="manga" class="section">
           <div class="section-header">
             <h2>Библиотека</h2>
@@ -48,7 +66,12 @@
           </div>
         </div>
 
-        <!-- СЕКЦИЯ: СПИСОК ГЛАВ -->
+        <!-- 
+          СЕКЦИЯ: СПИСОК ГЛАВ (CHAPTERS LIST)
+          Модуль отображения списка глав выбранного тома.
+          Появляется после выбора тома в библиотеке.
+          ID: #chapters-list
+        -->
         <div id="chapters-list" class="section hidden">
           <button class="back-btn" onclick="app.showSection('manga')">
             ← Назад к томам
@@ -62,7 +85,14 @@
           </div>
         </div>
 
-        <!-- СЕКЦИЯ: ПРОСМОТРЩИК -->
+        <!-- 
+          СЕКЦИЯ: ПРОСМОТРЩИК (VIEWER)
+          Основной модуль для чтения манги.
+          Содержит:
+          - Sticky Header (закрепленная шапка) с навигацией и выбором глав.
+          - Container для изображений страниц.
+          ID: #viewer
+        -->
         <div id="viewer" class="section hidden">
           <div class="sticky-header">
             <div class="viewer-controls">
@@ -86,7 +116,11 @@
           </div>
         </div>
 
-        <!-- СЕКЦИЯ: АВТОР -->
+        <!-- 
+          СЕКЦИЯ: ОБ АВТОРЕ (AUTHOR INFO)
+          Информационный статический модуль с биографией Кэнтаро Миуры.
+          ID: #author
+        -->
         <div id="author" class="section hidden">
           <div class="section-header">
             <h2>Об Авторе</h2>
@@ -136,7 +170,12 @@
           </div>
         </div>
 
-        <!-- СЕКЦИЯ: МАТЕРИАЛЫ -->
+        <!-- 
+          СЕКЦИЯ: ДОП. МАТЕРИАЛЫ (ASSETS/GALLERY)
+          Модуль галереи с изображениями.
+          Поддерживает открытие изображений в модальном окне.
+          ID: #assets
+        -->
         <div id="assets" class="section hidden">
           <div class="section-header">
             <h2>Интересные фото</h2>
@@ -147,7 +186,11 @@
           </div>
         </div>
 
-        <!-- СЕКЦИЯ: НОВОСТИ -->
+        <!-- 
+          СЕКЦИЯ: НОВОСТИ (NEWS)
+          Блок новостей проекта и обновлений.
+          ID: #news
+        -->
         <div id="news" class="section hidden">
           <div class="section-header">
             <h2>Последние Новости</h2>
@@ -161,7 +204,11 @@
         </div>
       </main>
 
-      <!-- MODAL FOR GALLERY -->
+      <!-- 
+        МОДАЛЬНОЕ ОКНО (MODAL)
+        Глобальный компонент для просмотра изображений из галереи в полном размере.
+        Скрыто по умолчанию.
+      -->
       <div id="image-modal" class="modal hidden">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="modal-img">
@@ -169,10 +216,12 @@
       </div>
     </div>
 
-    <!-- СКРИПТЫ -->
-    <!-- Данные -->
+    <!-- 
+      СКРИПТЫ
+      1. manga-data.js - База данных о томах, главах и путях к изображениям.
+      2. script.js - Основная логика приложения (SPA роутинг, рендеринг, события).
+    -->
     <script src="js/manga-data.js"></script>
-    <!-- Логика -->
     <script src="js/script.js"></script>
   </body>
 </html>

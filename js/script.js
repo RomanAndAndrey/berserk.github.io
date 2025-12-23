@@ -1,17 +1,37 @@
-// --- КОНФИГУРАЦИЯ И БАЗА ДАННЫХ ---
-// Использовать сгенерированные данные, если есть, иначе запасной вариант/пусто
+/**
+ * =========================================================================
+ * КОНФИГУРАЦИЯ И БАЗА ДАННЫХ (CONFIGURATION & DATABASE)
+ * =========================================================================
+ * Инициализация источников данных.
+ * generatedMangaData и generatedMaterialsData - глобальные переменные,
+ * которые могут быть определены в других скриптах (например, manga-data.js).
+ */
 const mangaDatabase = typeof generatedMangaData !== 'undefined' ? { volumes: generatedMangaData } : { volumes: {} };
 const materialsData = typeof generatedMaterialsData !== 'undefined' ? generatedMaterialsData : [];
 
-// --- СОСТОЯНИЕ ПРИЛОЖЕНИЯ ---
+/**
+ * СОСТОЯНИЕ ПРИЛОЖЕНИЯ (APP STATE)
+ * Хранит текущий контекст использования приложения.
+ * @property {number} currentVolume - Номер текущего просматриваемого тома.
+ * @property {number} currentChapter - Номер текущей просматриваемой главы.
+ * @property {string} currentSection - ID активной секции интерфейса (для SPA навигации).
+ */
 const state = {
     currentVolume: 1,
     currentChapter: 1,
-    currentSection: 'manga' // 'manga', 'chapters-list', 'viewer', 'author' (об авторе), 'assets', 'news'
+    currentSection: 'manga' // Варианты: 'manga', 'chapters-list', 'viewer', 'author', 'assets', 'news'
 };
 
 // --- ОСНОВНОЕ ПРИЛОЖЕНИЕ ---
 const app = {
+    /**
+     * Инициализация приложения.
+     * Вызывается при событии DOMContentLoaded.
+     * - Настраивает навигацию.
+     * - Устанавливает начальный том.
+     * - Рендерит библиотеку томов.
+     * - Инициализирует галерею.
+     */
     init: () => {
         app.setupNavigation();
         // По умолчанию Том 1, если доступен
@@ -23,6 +43,13 @@ const app = {
         console.log("Берсерк SPA Инициализирован");
     },
 
+    /**
+     * НАСТРОЙКА НАВИГАЦИИ (NAVIGATION SETUP)
+     * Вешает обработчики событий на элементы меню и управления.
+     * - Обработка кликов по боковому меню (смена active класса).
+     * - Обработка селектов выбора тома/главы в просмотрщике.
+     * - Обработка переключателя видимости хедера.
+     */
     // НАВИГАЦИЯ
     setupNavigation: () => {
         const navLinks = document.querySelectorAll('.nav-links li');
@@ -52,7 +79,7 @@ const app = {
             app.loadChapter(state.currentVolume, ch);
         });
 
-        // Переключение хедера
+        // Переключение хедера (Sticky Header Toggle)
         const headerToggleBtn = document.getElementById('header-toggle');
         if (headerToggleBtn) {
             headerToggleBtn.addEventListener('click', () => {
@@ -64,6 +91,11 @@ const app = {
         }
     },
 
+    /**
+     * ПЕРЕКЛЮЧЕНИЕ СЕКЦИЙ (ROUTING)
+     * Основная функция SPA-навигации. Скрывает все секции и показывает целевую.
+     * @param {string} sectionId - ID HTML-элемента секции, которую нужно показать.
+     */
     showSection: (sectionId) => {
         // скрыть все секции
         document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
@@ -88,6 +120,11 @@ const app = {
         window.scrollTo(0,0);
     },
 
+    /**
+     * РЕНДЕРИНГ БИБЛИОТЕКИ (RENDER LIBRARY)
+     * Заполняет grid-сетку карточками томов на основе данных из mangaDatabase.
+     * Создает элементы динамически, добавляя обложки и обработчики кликов.
+     */
     // ЛОГИКА БИБЛИОТЕКИ МАНГИ
     renderVolumes: () => {
         const grid = document.getElementById('volumes-grid');
@@ -116,6 +153,11 @@ const app = {
         });
     },
 
+    /**
+     * ОТКРЫТИЕ ТОМА (OPEN VOLUME)
+     * Переход из библиотеки к списку глав конкретного тома.
+     * @param {number|string} volNum - Номер тома для открытия.
+     */
     openVolume: (volNum) => {
         state.currentVolume = parseInt(volNum);
         const volData = mangaDatabase.volumes[volNum];
@@ -137,6 +179,17 @@ const app = {
         app.showSection('chapters-list');
     },
 
+    /**
+     * ЗАГРУЗКА ГЛАВЫ (LOAD CHAPTER)
+     * Основная логика просмотрщика.
+     * - Очищает текущий контейнер страниц.
+     * - Генерирует теги <img> для каждой страницы выбранной главы.
+     * - Обновляет навигационные контролы (селекты).
+     * - Переключает вид на секцию просмотрщика.
+     * 
+     * @param {number|string} volNum - Номер тома.
+     * @param {number|string} chNum - Номер главы.
+     */
     // ЛОГИКА ПРОСМОТРЩИКА
     loadChapter: (volNum, chNum) => {
         volNum = parseInt(volNum);
@@ -178,6 +231,14 @@ const app = {
         app.showSection('viewer');
     },
 
+    /**
+     * ОБНОВЛЕНИЕ ЭЛЕМЕНТОВ УПРАВЛЕНИЯ (UPDATE CONTROLS)
+     * Синхронизирует выпадающие списки (select) с текущим состоянием просмотра.
+     * Заполняет список глав, соответствующий выбранному тому.
+     * 
+     * @param {number} currentVol - Текущий том.
+     * @param {number} currentCh - Текущая глава.
+     */
     updateViewerControls: (currentVol, currentCh) => {
         const volSelect = document.getElementById('volume-select');
         const chSelect = document.getElementById('chapter-select');
@@ -204,10 +265,21 @@ const app = {
         });
     },
 
+    /**
+     * ВОЗВРАТ К СПИСКУ ГЛАВ (BACK NAVIGATION)
+     * Утилитарная функция для кнопки "Назад" в просмотрщике.
+     * Возвращает пользователя в контекст текущего выбранного тома.
+     */
     goBackToChapters: () => {
         app.openVolume(state.currentVolume);
     },
 
+    /**
+     * ИНИЦИАЛИЗАЦИЯ ГАЛЕРЕИ (GALLERY SETUP)
+     * - Рендерит сетку изображений из materialsData.
+     * - Настраивает модальное окно для просмотра увеличенных изображений.
+     * - Добавляет обработчики закрытия модального окна (клик по крестику или фону).
+     */
     // ГАЛЕРЕЯ / МОДАЛКА
     setupGallery: () => {
         const grid = document.getElementById('materials-gallery');

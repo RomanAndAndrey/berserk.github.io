@@ -1,5 +1,5 @@
-# PowerShell Script to Generate Manga Configuration
-# Scans assets/manga/vol{X}/ch{Y} and creates js/manga-data.js
+# PowerShell скрипт для генерации конфигурации манги
+# Сканирует assets/manga/vol{X}/ch{Y} и создает js/manga-data.js
 
 $assetsPath = Join-Path $PSScriptRoot "..\assets\manga"
 $outputPath = Join-Path $PSScriptRoot "..\js\manga-data.js"
@@ -11,23 +11,23 @@ if (-not (Test-Path $assetsPath)) {
 
 $volumes = @{}
 
-# Get all Volume folders (vol1, vol2...)
+# Получить все папки томов (vol1, vol2...)
 $volDirs = Get-ChildItem -Path $assetsPath -Directory | Where-Object { $_.Name -match "^vol(\d+)$" }
 
 foreach ($volDir in $volDirs) {
     $volNum = [int]$volDir.Name.Substring(3)
     $chapters = @{}
 
-    # Check for cover
+    # Проверка наличия обложки
     $coverPath = "assets/manga/$($volDir.Name)/cover.jpg"
     
-    # Get all Chapter folders (ch1, ch2...)
+    # Получить все папки глав (ch1, ch2...)
     $chDirs = Get-ChildItem -Path $volDir.FullName -Directory | Where-Object { $_.Name -match "^ch(\d+)$" }
 
     foreach ($chDir in $chDirs) {
         $chNum = [int]$chDir.Name.Substring(2)
         
-        # Get all image files
+        # Получить все файлы изображений
         $images = Get-ChildItem -Path $chDir.FullName -File | Where-Object { $_.Extension -match "\.(jpg|jpeg|png|webp)$" } | Sort-Object Name
         
         $pageList = @()
@@ -35,7 +35,7 @@ foreach ($volDir in $volDirs) {
             $pageList += $img.Name
         }
 
-        # Convert keys to String to avoid ConvertTo-Json issues
+        # Преобразовать ключи в строку во избежание проблем с ConvertTo-Json
         $chapters["$chNum"] = @{
             title = "Chapter $chNum" 
             pages = $pageList
@@ -49,7 +49,7 @@ foreach ($volDir in $volDirs) {
     }
 }
 
-# --- Materials Generation ---
+# --- Генерация Материалов ---
 $materialsPath = Join-Path $PSScriptRoot "..\assets\materials"
 $materialsList = @()
 
@@ -62,13 +62,13 @@ if (Test-Path $materialsPath) {
     Write-Host "Materials folder not found at $materialsPath, skipping materials generation."
 }
 
-# Convert to JSON
+# Конвертация в JSON
 $jsonVolumes = $volumes | ConvertTo-Json -Depth 5
 $jsonMaterials = $materialsList | ConvertTo-Json -Depth 2
 
-# Wrap in JS variable
+# Обернуть в JS переменную
 $content = "const generatedMangaData = $jsonVolumes;`nconst generatedMaterialsData = $jsonMaterials;"
 
-# Write to file
+# Записать в файл
 Set-Content -Path $outputPath -Value $content -Encoding UTF8
 Write-Host "Successfully generated $outputPath"

@@ -33,7 +33,7 @@
 }
 
 body {
-  background-color: var(--bg-color);
+  background: radial-gradient(circle at top right, #111 0%, #000 70%) fixed no-repeat;
   color: var(--text-main);
   font-family: var(--font-body);
   height: 100vh;
@@ -135,7 +135,7 @@ body {
   overflow-y: auto;
   padding: 0; /* Убрать глобальный отступ для полноэкранных секций */
   position: relative;
-  background: radial-gradient(circle at top right, #111 0%, #000 70%);
+  background: transparent;
 }
 
 .section {
